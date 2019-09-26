@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leave Page</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" >
+</head>
+<body>
+
+	<nav class="navbar navbar-light bg-light">
+  		<h2 class="navbar-brand mb-0 ml-4">Welcome to LeaveApp</h2>
+      <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+          <a class="btn btn-primary" href="/accounts/login">Logout <span class="sr-only">(current)</span></a>
+        </li>
+        </ul>
+	</nav>
+
+    {% if messages %}
+                {% for msg in messages %}
+                    <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{msg.message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+{% if user.is_authenticated %}
+<div class="jumbotron">
+<div class="row">
+<div class="col-8">
+  <h1 class="display-4">Hello, {{user.username }}!</h1>
+  <p class="lead"> Apply for Leave.</p>
+</div>
+</div>
+  <hr class="my-4">
+
+
+
+  <div class="row m-4">
+{% for category in categories %}
+  <div class="card m-4" style="width: 18rem;">
+    <div class="card-body">
+    <h5 class="card-title">{{leavetype}}</h5>
+    <p class="card-text">{{leavetype}}.</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+</div>
+{% else %}
+
+<h2>You have to login,<a href="/accounts/login/">Click Here</a></h2>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" ></script>
+</body>
+</html>
